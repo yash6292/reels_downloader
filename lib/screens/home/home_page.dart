@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:reels_downloader/screens/downloads/DownloadedList.dart';
 import 'package:reels_downloader/screens/reels_copy_paste/reels_copy_paste.dart';
 import 'package:reels_downloader/screens/home/common_home_container..dart';
+import 'package:reels_downloader/utils/constants.dart';
+import 'package:reels_downloader/utils/custom_ad_widget.dart';
+import 'package:reels_downloader/utils/launch_url.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,45 +27,61 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.pinkAccent, fontWeight: FontWeight.bold),
             ),
             Text(
-              'Video ',
-              style: TextStyle(
-                  color: Colors.purpleAccent, fontWeight: FontWeight.bold),
-            ),
-            Text(
               'Downloader ',
               style: TextStyle(
-                  color: Colors.amberAccent, fontWeight: FontWeight.bold),
+                  color: Colors.purpleAccent, fontWeight: FontWeight.bold),
             ),
           ])),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          children: [
-            const SizedBox(height: 25),
-            CommonHomeContainer(
-                onTap: () => Get.to(const ReelsCopyPastePage()),
-                img: "https://cdn-icons-png.flaticon.com/512/3621/3621435.png",
-                text: "Reels Downloader"),
-            const SizedBox(height: 25),
-            CommonHomeContainer(
-                onTap: () => Get.to(const DownloadedList()),
-                img:
-                    "https://cdn.pixabay.com/photo/2016/12/18/13/45/download-1915753_960_720.png",
-                text: "Downloads"),
-            const SizedBox(height: 25),
-            CommonHomeContainer(
-                onTap: () => Get.to(const ReelsCopyPastePage()),
-                img: "https://cdn-icons-png.flaticon.com/512/4122/4122962.png",
-                text: "Rate App"),
-            const SizedBox(height: 25),
-            CommonHomeContainer(
-                onTap: () => Get.to(const ReelsCopyPastePage()),
-                img:
-                    "https://cdn3d.iconscout.com/3d/premium/thumb/apps-7025902-5700349.png",
-                text: "More Apps")
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 25),
+              CommonHomeContainer(
+                  onTap: () => Get.to(const ReelsCopyPastePage()),
+                  img: "assets/images/instagram.png",
+                  text: "Reels Download"),
+              const SizedBox(height: 25),
+              CommonHomeContainer(
+                  onTap: () => Get.to(const DownloadedList()),
+                  img: "assets/images/download.png",
+                  text: "Downloads"),
+              const SizedBox(height: 25),
+              CommonHomeContainer(
+                  onTap: () => launchUrl(
+                      url:
+                          'https://play.google.com/store/apps/details?id=com.insta.reelsdownloader'),
+                  img: "assets/images/rate_app.png",
+                  text: "Rate App"),
+              const SizedBox(height: 25),
+              CommonHomeContainer(
+                  onTap: () => launchUrl(
+                      url:
+                          'https://play.google.com/store/apps/developer?id=Amdavadi+Infotech'),
+                  img: "assets/images/more_app.png",
+                  text: "More Apps"),
+            ],
+          ),
         ),
       ),
+      bottomNavigationBar: CustomAdWidget(
+          margin: 20,
+          buttonTitle: ConstantsString.playNow,
+          title: ConstantsString.adTitle,
+          description: ConstantsString.adDes,
+          height: 120,
+          buttonHeight: 30,
+          buttonWidth: 90,
+          fontSize: 12,
+          onTap: () => launchUrl(
+              url:
+                  'https://play.google.com/store/apps/details?id=com.games.all_games_in_one_game'),
+          buttonOnTap: () => launchUrl(
+              url:
+                  'https://play.google.com/store/apps/details?id=com.games.all_games_in_one_game'),
+          imageUrl: ConstantsString.adImage),
     );
   }
 }

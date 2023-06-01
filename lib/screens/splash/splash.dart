@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     )),
               ),
               const SizedBox(height: 20),
-              const Text('Reels Video Downloader',
+              const Text('Reels Downloader',
                   style:
                       TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               const SizedBox(height: 220),

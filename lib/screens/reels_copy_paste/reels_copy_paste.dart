@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reels_downloader/controller/DownloadController.dart';
 import 'package:reels_downloader/screens/downloads/download_reels.dart';
+import 'package:reels_downloader/utils/constants.dart';
+import 'package:reels_downloader/utils/custom_ad_widget.dart';
+import 'package:reels_downloader/utils/launch_url.dart';
 import 'package:reels_downloader/utils/loadder.dart';
 
 class ReelsCopyPastePage extends StatefulWidget {
@@ -37,13 +40,13 @@ class _ReelsCopyPastePageState extends State<ReelsCopyPastePage> {
       ),
       body: Form(
         key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Column(
               children: [
-                Image.network(
-                  'https://cdn-icons-png.flaticon.com/512/3621/3621435.png',
+                Image.asset(
+                  'assets/images/instagram.png',
                   height: 60,
                   fit: BoxFit.cover,
                 ),
@@ -120,6 +123,22 @@ class _ReelsCopyPastePageState extends State<ReelsCopyPastePage> {
           ),
         ),
       ),
+      bottomNavigationBar: CustomAdWidget(
+          margin: 20,
+          buttonTitle: ConstantsString.playNow,
+          title: ConstantsString.adTitle,
+          description: ConstantsString.adDes,
+          height: 120,
+          buttonHeight: 30,
+          buttonWidth: 90,
+          fontSize: 12,
+          onTap: () => launchUrl(
+              url:
+                  'https://play.google.com/store/apps/details?id=com.games.all_games_in_one_game'),
+          buttonOnTap: () => launchUrl(
+              url:
+                  'https://play.google.com/store/apps/details?id=com.games.all_games_in_one_game'),
+          imageUrl: ConstantsString.adImage),
     );
   }
 }

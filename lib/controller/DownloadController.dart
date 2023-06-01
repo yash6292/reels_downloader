@@ -13,11 +13,12 @@ import 'package:reels_downloader/model/insta_post_without_login.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart' as wb;
 
 class DownloadController extends GetxController {
-  var processing = false.obs;
+  RxBool processing = false.obs;
   bool isLogin = false;
   String? path;
   var box = GetStorage();
   Dio dio = Dio();
+
   Future<String?> startDownload(String link, BuildContext context) async {
     // Asking for video storage permission
     await Permission.storage.request();
@@ -67,7 +68,7 @@ class DownloadController extends GetxController {
     } else {
       Random random = Random();
       int randomNumber = random.nextInt(1000);
-      Directory appDocDir = Directory('/storage/emulated/0/MyPersonalApp');
+      Directory appDocDir = Directory('/storage/emulated/0/Reels Downloader');
       String savePath = "${appDocDir.path}/1654585$randomNumber.mp4";
       await dio.download(videoURLLLLL, savePath);
       final result =
@@ -77,8 +78,8 @@ class DownloadController extends GetxController {
   }
 
   downloadReal(String link, BuildContext context) async {
-    processing.value = true;
     try {
+      processing.value = true;
       path = null;
       update();
       await startDownload(link, context).then((value) {
@@ -91,7 +92,7 @@ class DownloadController extends GetxController {
       });
       processing.value = false;
     } catch (e) {
-      // processing.value = false;
+      processing.value = false;
       rethrow;
     }
   }

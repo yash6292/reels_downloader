@@ -29,7 +29,7 @@ class CommonHomeContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.network(
+            Image.asset(
               img ?? '',
               height: 50,
               fit: BoxFit.cover,

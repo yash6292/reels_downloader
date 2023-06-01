@@ -1,4 +1,4 @@
-package com.example.reels_downloader
+package com.insta.reelsdownloader
 
 import io.flutter.embedding.android.FlutterActivity
 

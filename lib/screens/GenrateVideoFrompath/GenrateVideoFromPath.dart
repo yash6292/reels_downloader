@@ -33,20 +33,21 @@ class _GenrateVideoFrompathState extends State<GenrateVideoFrompath> {
       ).then((value) {
         uint8list = value;
         loading = false;
-
         setState(() {});
       });
     } catch (e) {
+      loading = false;
+      setState(() {});
       rethrow;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return uint8list != null
-        ? loading
-            ? const Loadder()
-            : InkWell(
+    return loading
+        ? const Loadder()
+        : uint8list != null
+            ? InkWell(
                 onTap: () {
                   Get.to(VideoPlayer(widget.path));
                 },
@@ -74,17 +75,17 @@ class _GenrateVideoFrompathState extends State<GenrateVideoFrompath> {
                     )
                   ],
                 ))
-        : Container(
-            alignment: Alignment.center,
-            width: 500,
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: Colors.red, borderRadius: BorderRadius.circular(20)),
-            child: const Text(
-              textAlign: TextAlign.center,
-              'This reel is deleted by you from the local storage',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ));
+            : Container(
+                alignment: Alignment.center,
+                width: 500,
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                    color: Colors.red, borderRadius: BorderRadius.circular(20)),
+                child: const Text(
+                  textAlign: TextAlign.center,
+                  'This reel is deleted by you from the local storage',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ));
   }
 }
